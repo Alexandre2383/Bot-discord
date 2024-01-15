@@ -1,2 +1,2 @@
 # Bot-discord
- Apprentissage test
+ Apprentissage programmation Python avec la création de Bot Discord
