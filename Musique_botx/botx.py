@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 import yt_dlp as youtube_dl
+from decouple import config
+
+DISCORD_TOKEN=config('DISCORD_TOKEN')
 print("Bot script started")
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
@@ -42,4 +45,4 @@ async def play(ctx, url):
             voice_channel.source.volume = 0.5  # Ajustez le volume selon vos besoins (0.5 = 50%)
             await ctx.send(f'Playing: {info["title"]}')
         
-bot.run('MTE5NTA2ODM4MzQzMjAyODI1MQ.G361eu.rvLXsPPsn5-MT4_2JloyOH0gNHvwqp1RE0VxGQ')
+bot.run(DISCORD_TOKEN)
