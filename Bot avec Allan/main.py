@@ -1,6 +1,9 @@
 
 import discord
 from discord.ext import commands
+from decouple import config
+
+DISCORD_TOKEN=config('DISCORD_TOKEN')
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -21,4 +24,4 @@ intents.guilds = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 client = MyClient(intents=intents)
 
-client.run('MTE5NDczMTQ1ODU5ODgwOTY5MQ.G-LJcE.jIMFSQ-pwF_d3ROdItQm43oVLIZTEbUfZLgXXk')
+client.run(DISCORD_TOKEN)
