@@ -3,8 +3,12 @@ import requests, json, random, datetime, asyncio
 import discord
 from discord.ext import commands, tasks
 from datetime import datetime, timedelta
+from decouple import config
 import time
 
+DISCORD_TOKEN = config('DISCORD_TOKEN')
+OPENWEATHER_API_KEY = config('OPENWEATHER_API_KEY')
+CHANNEL_ID = config('CHANNEL_ID')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents)
 
@@ -18,7 +22,7 @@ meteo_container = MeteoContainer()
 
 # Fonction pour obtenir la météo
 def obtenir_meteo_ville(ville="Toulon"):
-    api_key = ""
+    api_key = OPENWEATHER_API_KEY
     urlDebut = "http://api.openweathermap.org/data/2.5/weather?"
     urlComplete = urlDebut + "appid=" + api_key + "&q=" + ville
     response = requests.get(urlComplete)
@@ -97,7 +101,7 @@ async def send_scheduled_message():
     
     # Si l'heure actuelle correspond à l'une des heures définies
     if current_hour in target_hours:
-        channel = bot.get_channel()
+        channel = bot.get_channel(CHANNEL_ID)
         message = obtenir_meteo_ville()
         meteo_container.message_to_send = message
         await channel.send(message)
@@ -118,4 +122,4 @@ async def meteo(ctx, *args):
     resultat = obtenir_meteo_ville(ville)
     await ctx.send(resultat)
 
-bot.run('')
+bot.run(DISCORD_TOKEN)
