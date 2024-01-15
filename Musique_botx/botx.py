@@ -42,4 +42,4 @@ async def play(ctx, url):
             voice_channel.source.volume = 0.5  # Ajustez le volume selon vos besoins (0.5 = 50%)
             await ctx.send(f'Playing: {info["title"]}')
         
-bot.run('MTE5NTA2ODM4MzQzMjAyODI1MQ.Gex_HW.Wddohw8703cZ1v2Y3W8WNGkXzDQiXddobvMKJc')
+bot.run('MTE5NTA2ODM4MzQzMjAyODI1MQ.G361eu.rvLXsPPsn5-MT4_2JloyOH0gNHvwqp1RE0VxGQ')

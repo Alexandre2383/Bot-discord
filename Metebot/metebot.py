@@ -246,7 +246,7 @@ async def meteo(ctx, *args):
 
 
 
-bot.run('MTE5NTA2ODM4MzQzMjAyODI1MQ.G2CIV5.C_Uszlwp06yCpCYg2MNc5HHwSHbU0RPg2ZUvsw')
+bot.run('MTE5NTM2MDEzOTIzOTI0Nzk4Mw.GbjQn0.BhX2ox0KzKFkIJS0Vw4w-a9-zll0wyHxb11Uk8')
 bot.close()
 
 # # Vérifie si la requête a réussi (code de statut 200)
