@@ -13,7 +13,7 @@ print("Bot script started")
 target_hours = [8, 13]
 
 # Décorateur de boucle: 1 fois par heure, vérifie si l'heure est == à celle de la variable target_hours
-@tasks.loop(minutes=1)
+@tasks.loop(hours=1)
 async def send_scheduled_message():
     now = datetime.now()#Récupére l'heure actuelle
     current_hour = now.hour#et la stocke dans la variable current_hour
@@ -121,19 +121,18 @@ async def on_ready():
     send_scheduled_message.start()
 
 @bot.command(name='meteo')
-async def meteo(ctx):
+async def meteo(ctx, *args):
+    where = " ".join(args)
+    await ctx.send('Vous avez choisi {}'.format(where))
+
     # API key de OpenWeather
     api_key = "061e506eb621d872477330a8dae4cb76"
 
     # Variable du début de l'url d'api openweather
     urlDebut = "http://api.openweathermap.org/data/2.5/weather?"
-    
-    # Give city name
-    city_name = "Toulon"
-    
+
     #Variable de l'url complete: début d'url avec la API key et la ville
-    urlComplete = urlDebut + "appid=" + api_key + "&q=" + city_name
-    
+    urlComplete = urlDebut + "appid=" + api_key + "&q=" + where
     # initialisation de la variable response avec la requête de la variable urlComplete avec get method
     response = requests.get(urlComplete)
     
@@ -241,10 +240,13 @@ async def meteo(ctx):
                 await ctx.send(f" Taux d'humiditée = {str(humidite)}%")
                 await ctx.send(f" Météo = {str(meteo)}")
                 await ctx.send(f" Ca va secouer ! 🤸‍♂️🌪️")
+    
+    else:
+        await ctx.send(f"Je ne connais pas cette ville")
 
 
 
-bot.run('MTE5NTM2MDEzOTIzOTI0Nzk4Mw.GK9shU.2rPv4ycbImlg0JmXEJHEbefyUcbDtauLvT69RM')
+bot.run('MTE5NTA2ODM4MzQzMjAyODI1MQ.G2CIV5.C_Uszlwp06yCpCYg2MNc5HHwSHbU0RPg2ZUvsw')
 bot.close()
 
 # # Vérifie si la requête a réussi (code de statut 200)
