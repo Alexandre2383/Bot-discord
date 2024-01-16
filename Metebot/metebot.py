@@ -2,7 +2,7 @@ from decimal import *
 import requests, json, random, datetime, asyncio
 import discord
 from discord.ext import commands, tasks
-from datetime import datetime, timedelta
+from datetime import datetime
 from decouple import config
 import time
 
